@@ -1,11 +1,5 @@
 {
     "name": "crell/*",
-    "repositories": [
-        {
-            "type": "git",
-            "url": "https://github.com/Crell/fp.git"
-        }
-    ],
     "require": {
         "php": "~8.0"
     },
