@@ -19,5 +19,8 @@
             "Crell\\Foo\\": "tests",
             "Crell\\Foo\\Benchmarks\\": "benchmarks"
         }
+    },
+    "scripts": {
+        "benchmarks": "vendor/bin/phpbench run benchmarks --report=aggregate"
     }
 }
