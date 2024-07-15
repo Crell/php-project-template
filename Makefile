@@ -12,7 +12,7 @@ ifeq ($(origin .RECIPEPREFIX), undefined)
 endif
 .RECIPEPREFIX = >
 
-compose_command = docker-compose run -u $(id -u ${USER}):$(id -g ${USER}) --rm php81
+compose_command = docker-compose run -u $(id -u ${USER}):$(id -g ${USER}) --rm php83
 
 build: tmp/.docker-built
 
