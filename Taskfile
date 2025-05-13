@@ -28,7 +28,7 @@ function restart {
 
 function shell {
   start
-  docker exec -it $(docker ps -q --filter="NAME=${project}-${appContainer}") bash
+  docker compose exec -u $(id -u):$(id -g) ${appContainer} bash
 }
 
 function default {
