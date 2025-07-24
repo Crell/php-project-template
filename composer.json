@@ -16,6 +16,7 @@
     "require-dev": {
         "phpunit/phpunit": "^12.1.0",
         "phpbench/phpbench": "^1.4.1",
+        "phpmetrics/phpmetrics": "^2.9",
         "phpstan/phpstan": "^2.1.11"
     },
     "autoload": {
@@ -34,6 +35,7 @@
         "test": "phpunit",
         "phpstan": "phpstan",
         "coverage": "XDEBUG_MODE=coverage vendor/bin/phpunit --coverage-text --coverage-html=\"build/coverage\"",
+        "metrics": "phpmetrics --report-html=build/metrics src",
         "all-checks": [
             "phpunit",
             "phpstan"
