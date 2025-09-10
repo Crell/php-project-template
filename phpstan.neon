@@ -5,27 +5,20 @@ parameters:
 		- src
 		- tests
     ignoreErrors:
-        - message: '#(Array shape contains unspecified keys|Parameter .+ of method .+ contains unspecified keys|Array shape is not compatible with|Property .+ type with generic class .+ does not specify its types|Cannot access offset .+ on array\{.+\}|array\{.+\} does not accept key .+|Array has no value type specified in iterable type array)#'
-          paths:
-            - tests/*
-          reportUnmatched: false
-
-        - message: '#Method [a-zA-Z0-9\\_\\\\:\\(\\)]+ (has parameter \\\$[a-zA-Z0-9_]+|return type) with no value type specified in iterable type array#'
-          paths:
-            - tests/*
-          reportUnmatched: false
-
-        - message: '#Property [a-zA-Z0-9\\\$\\_\\\\:\\(\\)]+ type has no value type specified in iterable type array#'
-          paths:
-            - tests/*
-          reportUnmatched: false
-        # PHPStan doesn't understand PHPUnit's self-termination methods.
-        - message: '#Unreachable statement - code above always terminates.#'
-          paths:
-            - tests/*
-          reportUnmatched: false
         # PHPStan is overly aggressive on readonly properties.
-        - message: '#Class (.*) has an uninitialized readonly property (.*). Assign it in the constructor.#'
+        - identifier: property.uninitializedReadonly
           reportUnmatched: false
-        - message: '#Readonly property (.*) is assigned outside of the constructor.#'
+        - identifier:  property.readOnlyAssignNotInConstructor
+          reportUnmatched: false
+
+        # We don't need to be pedantic about iterable types in tests.
+        - identifier:  missingType.iterableValue
+          paths:
+            - tests/*
+          reportUnmatched: false
+
+        # PHPStan doesn't understand PHPUnit's self-termination methods.
+        - identifier: deadCode.unreachable
+          paths:
+            - tests/*
           reportUnmatched: false
