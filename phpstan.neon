@@ -1,9 +1,9 @@
 parameters:
-	level: 8
-	tmpDir: build/phpstan.cache
-	paths:
-		- src
-		- tests
+    level: 8
+    tmpDir: build/phpstan.cache
+    paths:
+        - src
+        - tests
     ignoreErrors:
         # PHPStan is overly aggressive on readonly properties.
         - identifier: property.uninitializedReadonly
