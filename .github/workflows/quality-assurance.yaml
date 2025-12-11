@@ -7,35 +7,30 @@ on:
 
 jobs:
     phpunit:
-        name: PHPUnit tests on ${{ matrix.php }} ${{ matrix.composer-flags }}
+        name: PHPUnit tests on ${{ matrix.php }}
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                php: [ '8.4' ]
-                composer-flags: [ '' ]
-                phpunit-flags: [ '--coverage-text' ]
+                php: [ '8.4', '8.5' ]
         steps:
             - uses: actions/checkout@v2
             - uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php }}
                   coverage: xdebug
-                  tools: composer:v2
-            - run: composer install --no-progress ${{ matrix.composer-flags }}
-            - run: vendor/bin/phpunit ${{ matrix.phpunit-flags }}
+            - run: composer install --no-progress
+            - run: vendor/bin/phpunit
     phpstan:
         name: PHPStan checks on ${{ matrix.php }}
         runs-on: ubuntu-latest
         strategy:
             matrix:
                 php: [ '8.4' ]
-                composer-flags: [ '' ]
         steps:
             - uses: actions/checkout@v2
             - uses: shivammathur/setup-php@v2
               with:
                   php-version: ${{ matrix.php }}
-                  coverage: xdebug
-                  tools: composer:v2
-            - run: composer install --no-progress ${{ matrix.composer-flags }}
+                  coverage: none
+            - run: composer install --no-progress
             - run: vendor/bin/phpstan
